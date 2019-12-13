@@ -13,8 +13,8 @@ canvas.height = height;
 //start circleObject
 
 let circleObject = {};
-circleObject.x = 300;
-circleObject.y = 400;
+circleObject.x = 100;
+circleObject.y = 100;
 circleObject.radius = 40;
 circleObject.color = "purple";
 circleObject.speedX = 3;
@@ -31,11 +31,18 @@ circleObject.draw = function(){
 circleObject.update = function(){
   circleObject.x = circleObject.x + circleObject.speedX;
   circleObject.y = circleObject.y + circleObject.speedY;
+  if(circleObject.y > height - circleObject.radius || circleObject.y < circleObject.radius){
+    circleObject.speedY = - circleObject.speedY ;
+  }
+  if(circleObject.x > width - circleObject.radius || circleObject.x < circleObject.radius){
+    circleObject.speedX = - circleObject.speedX ;
+  }
 }
 
 // einde circleObject
 
 function loop(){
+  context.clearRect(0,0,width,height);
   circleObject.update();
   circleObject.draw();
 }
